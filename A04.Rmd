@@ -18,6 +18,20 @@ Written submission should be pushed to your repository on GitHub by the end of *
 Create a new RMarkdown document (.Rmd file) in your GitHub repository in which you answer the following questions: 
 
 1. Return to the `iris` data set included in R.  Examine the distributions of `Sepal.Length` and `Sepal.Width`.  Produce a graph (or two) which represent these distributions.  What can you say about the variation of `Sepal.Length` and `Sepal.Width`?
+
+```{r}
+library(tidyverse)
+iris%>%
+  ggplot(aes(x=Sepal.Length,y=Sepal.Width, color=Species))+
+  geom_point()+
+  labs(title="Sepal Length vs Sepal Width",
+       x="Sepal Length",
+       y= "Sepal Width")+
+  geom_smooth(method=lm, se=FALSE)
+```
+
+Intial analysis indicated there was no real relationship between sepal length and sepal width. However, when trying to determine if there were underlying causes for this relationship, it appears as though different species have different relationships with sepal length and width. Seperating out the data by species and adding a regression line helps see the relationship.
+
 2. Examine how the categorical variable `Species` affects the distribution of `Sepal.Length` and `Sepal.Width`.  Produce a graph (or two) which shows clearly the relationship you would like to demonstrate.  Can the covariation here help explain some of the patterns we saw in first exploration?
 3. Examine the distribution of `Sepal.Width` now for data in only the species *virginica* in the data set.  What can you say about the distribution?
 
