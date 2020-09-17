@@ -11,6 +11,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<span style="color: green; font-size: 14pt">*Comments:*  Put your solutions into a separate document.
+    </span>
+
 ## Problem 1
 
 ```{r}
@@ -25,6 +28,20 @@ iris%>%
 ```
 
 Intial analysis indicated there was no real relationship between sepal length and sepal width. Putting a linear regression line shows that there is a slight negative correlation between sepal length and sepal width. More analysis will be necessary to determine if there is any reason for this relationship.
+
+<span style="color: green; font-size: 14pt">*Comments:*  
+  * This doesn't actually give much information about the distribution of these two variables; this gives information instead about the *covariation between* these two variables.
+  * A histogram or a boxplot would be more useful here, e.g. the following:
+    </span>
+
+```{r}
+iris%>%
+  ggplot(aes(x = Sepal.Width)) +
+  geom_histogram(binwidth = .3, fill = "lightblue", color = "darkblue")+
+  labs(title="Alternate: Distribution of Sepal Width",
+       x="Sepal Width",
+       y= NULL)
+```  
 
 ## Problem 2
 
@@ -42,6 +59,22 @@ iris%>%
 
 Intial analysis indicated there was no real relationship between sepal length and sepal width. However, when trying to determine if there were underlying causes for this relationship, it appears as though different species have different relationships with sepal length and width. Seperating out the data by species and adding a regression line helps see the relationship.
 
+<span style="color: green; font-size: 14pt">*Comments:*  
+        * Same problem here; this doesn't really give information about the distributions of these variables.  
+        * Alternate suggestion below:
+    </span>
+    
+```{r}
+iris%>%
+  ggplot(aes(x = Sepal.Width, group = Species)) +
+  geom_histogram(binwidth = .3, fill = "lightblue", color = "darkblue")+
+  labs(title="Alternate: Distribution of Sepal Width, by Species",
+       x="Sepal Width",
+       y= NULL) +
+  facet_wrap( ~ Species, nrow = 3)
+```  
+    
+
 
 ## Problem 3
 
@@ -56,6 +89,10 @@ iris%>%
 ```
 
 The data has a median value of approximatley a 3.0, with a Q1 of approximately 2.8, and a Q3 of approximatley 3.3. 50% of the data falls between the approximate Q1 and Q3 values.
+
+<span style="color: green; font-size: 14pt">*Comments:*  
+        * OK--a box plot is a reasonable way to look at the distribution of a variable.  (Although I think these are more useful for comparisons across groups.  A box plot like this might have been very useful in the previous problem, when we wanted to compare across species.)
+    </span>
 
 ## Problem 4
     
